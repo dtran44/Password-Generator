@@ -1,18 +1,20 @@
 // Variable defintions
 
-var lowerCase = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-var upperCase = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-var numeric = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-var special = ['@', '%', '+', '\\', '/', "'", '!', '#', '$', '^', '?', ':', ',', ')', '(', '}', '{', ']', '[', '~', '-', '_', '.'];
+var lowerCase = 'abcdefghijklmnopqrstuvwxyz';
+var upperCase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+var numeric = '0123456789';
+var special = '@%+\\/' + "'!#$^?:,)(}{][~`-_.";
 
 
 
 // Get the button element from the HTML
-var button = document.querySelector('button');
+var generateBtn = document.querySelector("#generate");
 
 // Add an event listener to the button that listens for the click event
-button.addEventListener('click', function() {
+generateBtn.addEventListener('click', writePassword);  
 
+
+function writePassword() {
   // Display the prompt when the button is clicked
   var passwordLength = parseInt(prompt('What is the length of your password? (Min 8 Max 126)'));
   console.log(passwordLength)
@@ -42,7 +44,7 @@ if (userInputLower) {
   allChars += lowerCase;
 }
 if (userInputUpper) {
-  allChars += uppercase;
+  allChars += upperCase;
 }
 if (userInputNumeric) {
   allChars += numeric;
@@ -57,16 +59,13 @@ for (var i = 0; i < passwordLength; i++) {
   password += allChars[randomIndex];
 }
 
-})
+var passwordText = document.querySelector("#password");
+passwordText.value = password;
 
-// Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
 
 }
+
+
 
 
 // using a for loop - pick up from the concat , password += a
