@@ -16,10 +16,10 @@ generateBtn.addEventListener('click', writePassword);
 
 function writePassword() {
   // Display the prompt when the button is clicked
-  var passwordLength = parseInt(prompt('What is the length of your password? (Min 8 Max 126)'));
-  console.log(passwordLength)
+  var passwordLength = parseInt(prompt('What is the length of your password? (Min 8 Max 128)'));
+
   // If password length is not a number or does not meet min & max length, show an alert to the user and return
-  if (isNaN(passwordLength) || passwordLength<8 || passwordLength>126 ) 
+  if (isNaN(passwordLength) || passwordLength<8 || passwordLength>128 ) 
   {window.alert("Password does not meet requirements. Try again"); 
     return;
   }
@@ -39,20 +39,24 @@ function writePassword() {
 
 //create array using concat based on user's preference
 
-var allChars = '';
+var array = [];
+
 if (userInputLower) {
-  allChars += lowerCase;
+  array = array.concat(lowerCase);
 }
 if (userInputUpper) {
-  allChars += upperCase;
+  array = array.concat(upperCase);
 }
 if (userInputNumeric) {
-  allChars += numeric;
+  array = array.concat(numeric);
 }
 if (userInputSpecial) {
-  allChars += special;
+  array = array.concat(special);
 }
 
+var allChars = array.join('');
+
+// using a for loop - pick up from the concat , password += a
 var password = '';
 for (var i = 0; i < passwordLength; i++) {
   var randomIndex = Math.floor(Math.random() * allChars.length);
@@ -68,4 +72,4 @@ passwordText.value = password;
 
 
 
-// using a for loop - pick up from the concat , password += a
+
